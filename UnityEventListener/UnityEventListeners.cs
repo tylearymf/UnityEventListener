@@ -90,7 +90,7 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
         {
             temp.transform.localScale = Vector3.one;
             temp.transform.localPosition = Vector3.zero;
-            temp.transform.localEulerAngles = Vector3.zero;
+            temp.transform.localEulerAngles = Vector3.zero; 
         }
         return temp;
     }
