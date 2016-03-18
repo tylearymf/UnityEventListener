@@ -319,7 +319,7 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
 
     #endregion
 
-    #region UGUI事件监听
+    #region UGUIEventListener
 
     void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
     {
@@ -408,7 +408,7 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
 
     #endregion
 
-    #region Unity事件监听
+    #region UnityEventListener
 
     void Awake()
     {
