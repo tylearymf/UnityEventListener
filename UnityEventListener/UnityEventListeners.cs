@@ -72,17 +72,17 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
 
     #region Instantiate
 
-    public GameObject instantiate(GameObject go)
+    static public GameObject instantiate(GameObject go)
     {
         return Instantiate(go) as GameObject;
     }
 
-    public GameObject instantiate(Transform tr)
+    static public GameObject instantiate(Transform tr)
     {
         return Instantiate(tr) as GameObject;
     }
 
-    public GameObject instantiate(GameObject go, GameObject parent, bool isReset = true)
+    static public GameObject instantiate(GameObject go, GameObject parent, bool isReset = true)
     {
         GameObject temp = instantiate(go);
         temp.transform.parent = parent.transform;
@@ -95,7 +95,7 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
         return temp;
     }
 
-    public GameObject instantiate(Transform go, GameObject parent, bool isReset = true)
+    static public GameObject instantiate(Transform go, GameObject parent, bool isReset = true)
     {
         GameObject temp = instantiate(go);
         temp.transform.parent = parent.transform;
@@ -108,7 +108,7 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
         return temp;
     }
 
-    public GameObject instantiate(GameObject go, Transform parent, bool isReset = true)
+    static public GameObject instantiate(GameObject go, Transform parent, bool isReset = true)
     {
         GameObject temp = instantiate(go);
         temp.transform.parent = parent;
@@ -121,7 +121,7 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
         return temp;
     }
 
-    public GameObject instantiate(Transform go, Transform parent, bool isReset = true)
+    static public GameObject instantiate(Transform go, Transform parent, bool isReset = true)
     {
         GameObject temp = instantiate(go);
         temp.transform.parent = parent;
@@ -134,7 +134,7 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
         return temp;
     }
 
-    public GameObject instantiate(GameObject go, GameObject parent, Vector3 localScale)
+    static public GameObject instantiate(GameObject go, GameObject parent, Vector3 localScale)
     {
         GameObject temp = instantiate(go);
         temp.transform.parent = parent.transform;
@@ -144,7 +144,7 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
         return temp;
     }
 
-    public GameObject instantiate(GameObject go, GameObject parent, Vector3 localScale, Vector3 localPosition)
+    static public GameObject instantiate(GameObject go, GameObject parent, Vector3 localScale, Vector3 localPosition)
     {
         GameObject temp = instantiate(go);
         temp.transform.parent = parent.transform;
@@ -154,7 +154,7 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
         return temp;
     }
 
-    public GameObject instantiate(GameObject go, GameObject parent, Vector3 localScale, Vector3 localPosition,Vector3 localEulerAngles)
+    static public GameObject instantiate(GameObject go, GameObject parent, Vector3 localScale, Vector3 localPosition,Vector3 localEulerAngles)
     {
         GameObject temp = instantiate(go);
         temp.transform.parent = parent.transform;
@@ -164,7 +164,7 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
         return temp;
     }
 
-    public GameObject instantiate(GameObject go, Transform parent, Vector3 localScale)
+    static public GameObject instantiate(GameObject go, Transform parent, Vector3 localScale)
     {
         GameObject temp = instantiate(go);
         temp.transform.parent = parent;
@@ -174,7 +174,7 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
         return temp;
     }
 
-    public GameObject instantiate(GameObject go, Transform parent, Vector3 localScale, Vector3 localPosition)
+    static public GameObject instantiate(GameObject go, Transform parent, Vector3 localScale, Vector3 localPosition)
     {
         GameObject temp = instantiate(go);
         temp.transform.parent = parent;
@@ -184,7 +184,7 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
         return temp;
     }
 
-    public GameObject instantiate(GameObject go, Transform parent, Vector3 localScale, Vector3 localPosition, Vector3 localEulerAngles)
+    static public GameObject instantiate(GameObject go, Transform parent, Vector3 localScale, Vector3 localPosition, Vector3 localEulerAngles)
     {
         GameObject temp = instantiate(go);
         temp.transform.parent = parent;
