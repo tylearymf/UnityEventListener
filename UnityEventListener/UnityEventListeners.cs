@@ -52,7 +52,7 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
     event EventCallBack onTriggerStayCallBack;
     event EventCallBack startCallBack;
 
-    #region Get方法
+    #region Get
 
     static public UnityEventListener Get(GameObject go)
     {
@@ -70,7 +70,7 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
 
     #endregion
 
-    #region Instantiate方法
+    #region Instantiate
 
     public GameObject instantiate(GameObject go)
     {
@@ -193,6 +193,9 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
         temp.transform.localEulerAngles = localEulerAngles;
         return temp;
     }
+    #endregion
+
+    #region Position,Scale,Rotation 
 
     public float X
     {
