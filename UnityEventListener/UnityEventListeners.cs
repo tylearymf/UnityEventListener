@@ -29,6 +29,7 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
     public event VoidDelegate onScroll;
     public event VoidDelegate onSubmit;
 
+    public event VoidDelegate onPointerRightClick;
     public event VoidDelegate onPointerRightDoubleClick;
     public event VoidDelegate onPointerLeftClick;
     public event VoidDelegate onPointerLeftDoubleClick;
@@ -104,6 +105,11 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
         if (onPointerLeftDoubleClick != null && eventData.pointerId == LeftMouseID && eventData.clickCount == DoubleMouseClick)
         {
             onPointerLeftDoubleClick(ref data);
+        }
+
+        if(onPointerRightClick != null && eventData.pointerId == RightMouseID && eventData.clickCount == MouseClick)
+        {
+            onPointerRightClick(ref data);
         }
     }
 
