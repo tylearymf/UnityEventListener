@@ -29,9 +29,9 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
     public event VoidDelegate onScroll;
     public event VoidDelegate onSubmit;
 
-    public event VoidDelegate rightDoubleClick;
-    public event VoidDelegate leftClick;
-    public event VoidDelegate leftDoubleClick;
+    public event VoidDelegate onPointerRightDoubleClick;
+    public event VoidDelegate onPointerLeftClick;
+    public event VoidDelegate onPointerLeftDoubleClick;
 
     public delegate void EventCallBack();
     event EventCallBack awakeCallBack;
@@ -55,6 +55,12 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
     event EventCallBack onTriggerExitCallBack;
     event EventCallBack onTriggerStayCallBack;
     event EventCallBack startCallBack;
+
+    const int LeftMouseID = -1;
+    const int RightMouseID = -2;
+    const int CenterMouseID = -3;
+    const int MouseClick = 1;
+    const int DoubleMouseClick = 2;
 
     UGUIData data;
     #region Get
@@ -85,19 +91,19 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
             onPointerClick(ref data);
         }
 
-        if (rightDoubleClick != null && eventData.pointerId == 2 && eventData.clickCount == 1)
+        if (onPointerRightDoubleClick != null && eventData.pointerId == RightMouseID && eventData.clickCount == MouseClick)
         {
-            rightDoubleClick(ref data);
+            onPointerRightDoubleClick(ref data);
         }
 
-        if (leftClick != null && eventData.pointerId == 1 && eventData.clickCount == 1)
+        if (onPointerLeftClick != null && eventData.pointerId == LeftMouseID && eventData.clickCount == MouseClick)
         {
-            leftClick(ref data);
+            onPointerLeftClick(ref data);
         }
 
-        if (leftDoubleClick != null && eventData.pointerId == 1 && eventData.clickCount == 2)
+        if (onPointerLeftDoubleClick != null && eventData.pointerId == LeftMouseID && eventData.clickCount == DoubleMouseClick)
         {
-            leftDoubleClick(ref data);
+            onPointerLeftDoubleClick(ref data);
         }
     }
 
