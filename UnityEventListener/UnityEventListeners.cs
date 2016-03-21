@@ -7,7 +7,7 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
     IScrollHandler, IMoveHandler, ISubmitHandler, IUpdateSelectedHandler
 //,IEventListener
 {
-    public delegate void VoidDelegate(UGUIData go);
+    public delegate void VoidDelegate(ref UGUIData go);
 
     public object parameter;
 
@@ -28,6 +28,10 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
     public event VoidDelegate onMove;
     public event VoidDelegate onScroll;
     public event VoidDelegate onSubmit;
+
+    public event VoidDelegate rightDoubleClick;
+    public event VoidDelegate leftClick;
+    public event VoidDelegate leftDoubleClick;
 
     public delegate void EventCallBack();
     event EventCallBack awakeCallBack;
@@ -52,6 +56,7 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
     event EventCallBack onTriggerStayCallBack;
     event EventCallBack startCallBack;
 
+    UGUIData data;
     #region Get
 
     static public UnityEventListener Get(GameObject go)
@@ -70,340 +75,166 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
 
     #endregion
 
-    #region Instantiate
-
-    static public GameObject instantiate(GameObject go)
-    {
-        return Instantiate(go) as GameObject;
-    }
-
-    static public GameObject instantiate(Transform tr)
-    {
-        return Instantiate(tr) as GameObject;
-    }
-
-    static public GameObject instantiate(GameObject go, GameObject parent, bool isReset = true)
-    {
-        GameObject temp = instantiate(go);
-        temp.transform.parent = parent.transform;
-        if (isReset)
-        {
-            temp.transform.localScale = Vector3.one;
-            temp.transform.localPosition = Vector3.zero;
-            temp.transform.localEulerAngles = Vector3.zero; 
-        }
-        return temp;
-    }
-
-    static public GameObject instantiate(Transform go, GameObject parent, bool isReset = true)
-    {
-        GameObject temp = instantiate(go);
-        temp.transform.parent = parent.transform;
-        if (isReset)
-        {
-            temp.transform.localScale = Vector3.one;
-            temp.transform.localPosition = Vector3.zero;
-            temp.transform.localEulerAngles = Vector3.zero;
-        }
-        return temp;
-    }
-
-    static public GameObject instantiate(GameObject go, Transform parent, bool isReset = true)
-    {
-        GameObject temp = instantiate(go);
-        temp.transform.parent = parent;
-        if (isReset)
-        {
-            temp.transform.localScale = Vector3.one;
-            temp.transform.localPosition = Vector3.zero;
-            temp.transform.localEulerAngles = Vector3.zero;
-        }
-        return temp;
-    }
-
-    static public GameObject instantiate(Transform go, Transform parent, bool isReset = true)
-    {
-        GameObject temp = instantiate(go);
-        temp.transform.parent = parent;
-        if (isReset)
-        {
-            temp.transform.localScale = Vector3.one;
-            temp.transform.localPosition = Vector3.zero;
-            temp.transform.localEulerAngles = Vector3.zero;
-        }
-        return temp;
-    }
-
-    static public GameObject instantiate(GameObject go, GameObject parent, Vector3 localScale)
-    {
-        GameObject temp = instantiate(go);
-        temp.transform.parent = parent.transform;
-        temp.transform.localScale = localScale;
-        temp.transform.localPosition = Vector3.zero;
-        temp.transform.localEulerAngles = Vector3.zero;
-        return temp;
-    }
-
-    static public GameObject instantiate(GameObject go, GameObject parent, Vector3 localScale, Vector3 localPosition)
-    {
-        GameObject temp = instantiate(go);
-        temp.transform.parent = parent.transform;
-        temp.transform.localScale = localScale;
-        temp.transform.localPosition = localPosition;
-        temp.transform.localEulerAngles = Vector3.zero;
-        return temp;
-    }
-
-    static public GameObject instantiate(GameObject go, GameObject parent, Vector3 localScale, Vector3 localPosition,Vector3 localEulerAngles)
-    {
-        GameObject temp = instantiate(go);
-        temp.transform.parent = parent.transform;
-        temp.transform.localScale = localScale;
-        temp.transform.localPosition = localPosition;
-        temp.transform.localEulerAngles = localEulerAngles;
-        return temp;
-    }
-
-    static public GameObject instantiate(GameObject go, Transform parent, Vector3 localScale)
-    {
-        GameObject temp = instantiate(go);
-        temp.transform.parent = parent;
-        temp.transform.localScale = localScale;
-        temp.transform.localPosition = Vector3.zero;
-        temp.transform.localEulerAngles = Vector3.zero;
-        return temp;
-    }
-
-    static public GameObject instantiate(GameObject go, Transform parent, Vector3 localScale, Vector3 localPosition)
-    {
-        GameObject temp = instantiate(go);
-        temp.transform.parent = parent;
-        temp.transform.localScale = localScale;
-        temp.transform.localPosition = localPosition;
-        temp.transform.localEulerAngles = Vector3.zero;
-        return temp;
-    }
-
-    static public GameObject instantiate(GameObject go, Transform parent, Vector3 localScale, Vector3 localPosition, Vector3 localEulerAngles)
-    {
-        GameObject temp = instantiate(go);
-        temp.transform.parent = parent;
-        temp.transform.localScale = localScale;
-        temp.transform.localPosition = localPosition;
-        temp.transform.localEulerAngles = localEulerAngles;
-        return temp;
-    }
-    #endregion
-
-    #region Position,Scale,Rotation 
-
-    public float X
-    {
-        set
-        {
-            Vector3 temp = transform.position;
-            temp.x = value;
-            transform.position = temp;
-        }
-    }
-
-    public float Y
-    {
-        set
-        {
-            Vector3 temp = transform.position;
-            temp.y = value;
-            transform.position = temp;
-        }
-    }
-
-    public float Z
-    {
-        set
-        {
-            Vector3 temp = transform.position;
-            temp.z = value;
-            transform.position = temp;
-        }
-    }
-
-    public float LocalX
-    {
-        set
-        {
-            Vector3 temp = transform.localPosition;
-            temp.x = value;
-            transform.localPosition = temp;
-        }
-    }
-
-    public float LocalY
-    {
-        set
-        {
-            Vector3 temp = transform.localPosition;
-            temp.y = value;
-            transform.localPosition = temp;
-        }
-    }
-
-    public float LocalZ
-    {
-        set
-        {
-            Vector3 temp = transform.localPosition;
-            temp.z = value;
-            transform.localPosition = temp;
-        }
-    }
-
-    public float ScaleX
-    {
-        set
-        {
-            Vector3 temp = transform.localScale;
-            temp.x = value;
-            transform.localScale = temp;
-        }
-    }
-
-    public float ScaleY
-    {
-        set
-        {
-            Vector3 temp = transform.localScale;
-            temp.y = value;
-            transform.localScale = temp;
-        }
-    }
-
-    public float ScaleZ
-    {
-        set
-        {
-            Vector3 temp = transform.localScale;
-            temp.z = value;
-            transform.localScale = temp;
-        }
-    }
-
-    public float AngleX
-    {
-        set
-        {
-            Vector3 temp = transform.localEulerAngles;
-            temp.x = value;
-            transform.localEulerAngles = temp;
-        }
-    }
-
-    public float AngleY
-    {
-        set
-        {
-            Vector3 temp = transform.localEulerAngles;
-            temp.y = value;
-            transform.localEulerAngles = temp;
-        }
-    }
-
-    public float AngleZ
-    {
-        set
-        {
-            Vector3 temp = transform.localEulerAngles;
-            temp.z = value;
-            transform.localEulerAngles = temp;
-        }
-    }
-
-    #endregion
-
     #region UGUIEventListener
 
     void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
     {
-        if (onPointerClick != null) onPointerClick(new UGUIData(gameObject, eventData, parameter));
+        data = new UGUIData(gameObject, eventData, parameter);
+        if (onPointerClick != null)
+        {
+            onPointerClick(ref data);
+        }
+
+        if (rightDoubleClick != null && eventData.pointerId == 2 && eventData.clickCount == 1)
+        {
+            rightDoubleClick(ref data);
+        }
+
+        if (leftClick != null && eventData.pointerId == 1 && eventData.clickCount == 1)
+        {
+            leftClick(ref data);
+        }
+
+        if (leftDoubleClick != null && eventData.pointerId == 1 && eventData.clickCount == 2)
+        {
+            leftDoubleClick(ref data);
+        }
     }
 
     void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
     {
-        if (onPointerDown != null) onPointerDown(new UGUIData(gameObject, eventData, parameter));
+        if (onPointerDown != null)
+        {
+            data = new UGUIData(gameObject, eventData, parameter);
+            onPointerDown(ref data);
+        }
     }
 
     void IPointerUpHandler.OnPointerUp(PointerEventData eventData)
     {
-        if (onPointerUp != null) onPointerUp(new UGUIData(gameObject, eventData, parameter));
+        if (onPointerUp != null)
+        {
+            data = new UGUIData(gameObject, eventData, parameter);
+            onPointerUp(ref data);
+        }
     }
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
-        if (onPointerEnter != null) onPointerEnter(new UGUIData(gameObject, eventData, parameter));
+        if (onPointerEnter != null)
+        {
+            data = new UGUIData(gameObject, eventData, parameter);
+            onPointerEnter(ref data);
+        }
     }
 
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
     {
-        if (onPointerExit != null) onPointerExit(new UGUIData(gameObject, eventData, parameter));
+        if (onPointerExit != null)
+        {
+            data = new UGUIData(gameObject, eventData, parameter);
+            onPointerExit(ref data);
+        }
     }
 
     void ISelectHandler.OnSelect(BaseEventData eventData)
     {
-        if (onSelect != null) onSelect(new UGUIData(gameObject, eventData, parameter));
+        if (onSelect != null)
+        {
+            data = new UGUIData(gameObject, eventData, parameter);
+            onSelect(ref data);
+        }
     }
 
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
     {
-        if (onBeginDrag != null) onBeginDrag(new UGUIData(gameObject, eventData, parameter));
+        if (onBeginDrag != null)
+        {
+            data = new UGUIData(gameObject, eventData, parameter);
+            onBeginDrag(ref data);
+        }
     }
 
     void ICancelHandler.OnCancel(BaseEventData eventData)
     {
-        if (onCancel != null) onCancel(new UGUIData(gameObject, eventData, parameter));
+        if (onCancel != null) onCancel(ref data);
     }
 
     void IDeselectHandler.OnDeselect(BaseEventData eventData)
     {
-        if (onDeselect != null) onDeselect(new UGUIData(gameObject, eventData, parameter));
+        if (onDeselect != null)
+        {
+            data = new UGUIData(gameObject, eventData, parameter);
+            onDeselect(ref data);
+        }
     }
 
     void IDragHandler.OnDrag(PointerEventData eventData)
     {
-        if (onDrag != null) onDrag(new UGUIData(gameObject, eventData, parameter));
+        if (onDrag != null) onDrag(ref data);
     }
 
     void IDropHandler.OnDrop(PointerEventData eventData)
     {
-        if (onDrag != null) onDrag(new UGUIData(gameObject, eventData, parameter));
+        if (onDrag != null)
+        {
+            data = new UGUIData(gameObject, eventData, parameter);
+            onDrag(ref data);
+        }
     }
 
     void IEndDragHandler.OnEndDrag(PointerEventData eventData)
     {
-        if (onEndDrag != null) onEndDrag(new UGUIData(gameObject, eventData, parameter));
+        if (onEndDrag != null)
+        {
+            data = new UGUIData(gameObject, eventData, parameter);
+            onEndDrag(ref data);
+        }
     }
 
     void IInitializePotentialDragHandler.OnInitializePotentialDrag(PointerEventData eventData)
     {
-        if (onInitializePotentialDrag != null) onInitializePotentialDrag(new UGUIData(gameObject, eventData, parameter));
+        if (onInitializePotentialDrag != null)
+        {
+            data = new UGUIData(gameObject, eventData, parameter);
+            onInitializePotentialDrag(ref data);
+        }
     }
 
     void IMoveHandler.OnMove(AxisEventData eventData)
     {
-        if (onMove != null) onMove(new UGUIData(gameObject, eventData, parameter));
+        if (onMove != null)
+        {
+            data = new UGUIData(gameObject, eventData, parameter);
+            onMove(ref data);
+        }
     }
 
     void IScrollHandler.OnScroll(PointerEventData eventData)
     {
-        if (onScroll != null) onScroll(new UGUIData(gameObject, eventData, parameter));
+        if (onScroll != null)
+        {
+            data = new UGUIData(gameObject, eventData, parameter);
+            onScroll(ref data);
+        }
     }
 
     void ISubmitHandler.OnSubmit(BaseEventData eventData)
     {
-        if (onSubmit != null) onSubmit(new UGUIData(gameObject, eventData, parameter));
+        if (onSubmit != null)
+        {
+            data = new UGUIData(gameObject, eventData, parameter);
+            onSubmit(ref data);
+        }
     }
 
     void IUpdateSelectedHandler.OnUpdateSelected(BaseEventData eventData)
     {
-        if (onUpdateSelected != null) onUpdateSelected(new UGUIData(gameObject, eventData, parameter));
+        if (onUpdateSelected != null)
+        {
+            data = new UGUIData(gameObject, eventData, parameter);
+            onUpdateSelected(ref data);
+        }
     }
 
     #endregion
