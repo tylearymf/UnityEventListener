@@ -35,6 +35,7 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
     public event VoidDelegate onPointerLeftDoubleClick;
 
     public delegate void EventCallBack();
+    public delegate void EventsCallBack(int count);
     event EventCallBack awakeCallBack;
     event EventCallBack onApplicationPauseCallBack;
     event EventCallBack onApplicationFocusCallBack;
@@ -47,7 +48,7 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
     event EventCallBack onDestroyCallBack;
     event EventCallBack onDisableCallBack;
     event EventCallBack onEnableCallBack;
-    event EventCallBack onMouseDownCallBack;
+    event EventsCallBack onMouseDownCallBack;
     event EventCallBack onMouseEnterCallBack;
     event EventCallBack onMouseExitCallBack;
     event EventCallBack onMouseOverCallBack;
@@ -313,9 +314,11 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
         if (onEnableCallBack != null) onEnableCallBack();
     }
 
+    private int count = 0;
     void OnMouseDown()
     {
-        if (onMouseDownCallBack != null) onMouseDownCallBack();
+        count++;
+        if (onMouseDownCallBack != null) onMouseDownCallBack(count);
     }
 
     void OnMouseEnter()
@@ -430,7 +433,7 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
         if (CallBack != null) this.onEnableCallBack += CallBack;
     }
 
-    public void onMouseDown(UnityEventListener.EventCallBack CallBack)
+    public void onMouseDown(UnityEventListener.EventsCallBack CallBack)
     {
         if (CallBack != null) this.onMouseDownCallBack += CallBack;
     }
