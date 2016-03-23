@@ -255,7 +255,7 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
         }
     }
 
-    void onPointerClickFuc(EventCallBack callBack)
+    public void onPointerClickFuc(EventCallBack callBack)
     {
         if (callBack != null) this.onPointerClickCallBack += callBack;
     }
