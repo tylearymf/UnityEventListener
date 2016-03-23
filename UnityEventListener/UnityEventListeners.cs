@@ -58,6 +58,8 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
     event EventCallBack onTriggerStayCallBack;
     event EventCallBack startCallBack;
 
+    event EventCallBack onPointerClickCallBack;
+
     const int LeftMouseID = -1;
     const int RightMouseID = -2;
     const int CenterMouseID = -3;
@@ -87,6 +89,9 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
 
     void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
     {
+        if (onPointerClickCallBack != null)
+            onPointerClickCallBack();
+
         data = new UGUIData(gameObject, eventData, parameter);
         if (onPointerClick != null)
         {
@@ -248,6 +253,11 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
             data = new UGUIData(gameObject, eventData, parameter);
             onUpdateSelected(ref data);
         }
+    }
+
+    void onPointerClickFuc(EventCallBack callBack)
+    {
+        if (callBack != null) this.onPointerClickCallBack += callBack;
     }
 
     #endregion
