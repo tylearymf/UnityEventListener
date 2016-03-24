@@ -5,7 +5,6 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
     IPointerExitHandler, IPointerUpHandler, ISelectHandler, IDragHandler, IDropHandler, IBeginDragHandler,
     IDeselectHandler, ICancelHandler, IEndDragHandler, IInitializePotentialDragHandler,
     IScrollHandler, IMoveHandler, ISubmitHandler, IUpdateSelectedHandler
-//,IEventListener
 {
     public delegate void VoidDelegate(ref UGUIData go);
 
@@ -28,6 +27,24 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
     public event VoidDelegate onMove;
     public event VoidDelegate onScroll;
     public event VoidDelegate onSubmit;
+
+    event EventCallBack onPointerClickCallBack;
+    event EventCallBack onPointerDownCallBack;
+    event EventCallBack onPointerUpCallBack;
+    event EventCallBack onPointerEnterCallBack;
+    event EventCallBack onPointerExitCallBack;
+    event EventCallBack onSelectCallBack;
+    event EventCallBack onUpdateSelectedCallBack;
+    event EventCallBack onBeginDragCallBack;
+    event EventCallBack onCancelCallBack;
+    event EventCallBack onDeselectCallBack;
+    event EventCallBack onDragCallBack;
+    event EventCallBack onDropCallBack;
+    event EventCallBack onEndDragCallBack;
+    event EventCallBack onInitializePotentialDragCallBack;
+    event EventCallBack onMoveCallBack;
+    event EventCallBack onScrollCallBack;
+    event EventCallBack onSubmitCallBack;
 
     public event VoidDelegate onPointerRightClick;
     public event VoidDelegate onPointerRightDoubleClick;
@@ -57,9 +74,6 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
     event EventCallBack onTriggerExitCallBack;
     event EventCallBack onTriggerStayCallBack;
     event EventCallBack startCallBack;
-
-    event EventCallBack onPointerClickCallBack;
-    event EventCallBack onPointerDownCallBack;
 
     const int LeftMouseID = -1;
     const int RightMouseID = -2;
@@ -114,7 +128,7 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
             onPointerLeftDoubleClick(ref data);
         }
 
-        if(onPointerRightClick != null && eventData.pointerId == RightMouseID && eventData.clickCount == MouseClick)
+        if (onPointerRightClick != null && eventData.pointerId == RightMouseID && eventData.clickCount == MouseClick)
         {
             onPointerRightClick(ref data);
         }
@@ -134,6 +148,9 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
 
     void IPointerUpHandler.OnPointerUp(PointerEventData eventData)
     {
+        if (onPointerUpCallBack != null)
+            onPointerUpCallBack();
+
         if (onPointerUp != null)
         {
             data = new UGUIData(gameObject, eventData, parameter);
@@ -143,6 +160,9 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
+        if (onPointerEnterCallBack != null)
+            onPointerEnterCallBack();
+
         if (onPointerEnter != null)
         {
             data = new UGUIData(gameObject, eventData, parameter);
@@ -152,6 +172,9 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
 
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
     {
+        if (onPointerExitCallBack != null)
+            onPointerExitCallBack();
+
         if (onPointerExit != null)
         {
             data = new UGUIData(gameObject, eventData, parameter);
@@ -161,6 +184,9 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
 
     void ISelectHandler.OnSelect(BaseEventData eventData)
     {
+        if (onSelectCallBack != null)
+            onSelectCallBack();
+
         if (onSelect != null)
         {
             data = new UGUIData(gameObject, eventData, parameter);
@@ -170,6 +196,9 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
 
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
     {
+        if (onBeginDragCallBack != null)
+            onBeginDragCallBack();
+
         if (onBeginDrag != null)
         {
             data = new UGUIData(gameObject, eventData, parameter);
@@ -179,11 +208,21 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
 
     void ICancelHandler.OnCancel(BaseEventData eventData)
     {
-        if (onCancel != null) onCancel(ref data);
+        if (onCancelCallBack != null)
+            onCancelCallBack();
+
+        if (onCancel != null)
+        {
+            data = new UGUIData(gameObject, eventData, parameter);
+            onCancel(ref data);
+        }
     }
 
     void IDeselectHandler.OnDeselect(BaseEventData eventData)
     {
+        if (onDeselectCallBack != null)
+            onDeselectCallBack();
+
         if (onDeselect != null)
         {
             data = new UGUIData(gameObject, eventData, parameter);
@@ -193,11 +232,21 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
 
     void IDragHandler.OnDrag(PointerEventData eventData)
     {
-        if (onDrag != null) onDrag(ref data);
+        if (onDragCallBack != null)
+            onDragCallBack();
+
+        if (onDrag != null)
+        {
+            data = new UGUIData(gameObject, eventData, parameter);
+            onDrag(ref data);
+        }
     }
 
     void IDropHandler.OnDrop(PointerEventData eventData)
     {
+        if (onDropCallBack != null)
+            onDropCallBack();
+
         if (onDrag != null)
         {
             data = new UGUIData(gameObject, eventData, parameter);
@@ -207,6 +256,9 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
 
     void IEndDragHandler.OnEndDrag(PointerEventData eventData)
     {
+        if (onEndDragCallBack != null)
+            onEndDragCallBack();
+
         if (onEndDrag != null)
         {
             data = new UGUIData(gameObject, eventData, parameter);
@@ -216,6 +268,9 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
 
     void IInitializePotentialDragHandler.OnInitializePotentialDrag(PointerEventData eventData)
     {
+        if (onInitializePotentialDragCallBack != null)
+            onInitializePotentialDragCallBack();
+
         if (onInitializePotentialDrag != null)
         {
             data = new UGUIData(gameObject, eventData, parameter);
@@ -225,6 +280,9 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
 
     void IMoveHandler.OnMove(AxisEventData eventData)
     {
+        if (onMoveCallBack != null)
+            onMoveCallBack();
+
         if (onMove != null)
         {
             data = new UGUIData(gameObject, eventData, parameter);
@@ -234,6 +292,9 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
 
     void IScrollHandler.OnScroll(PointerEventData eventData)
     {
+        if (onScrollCallBack != null)
+            onScrollCallBack();
+
         if (onScroll != null)
         {
             data = new UGUIData(gameObject, eventData, parameter);
@@ -243,6 +304,9 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
 
     void ISubmitHandler.OnSubmit(BaseEventData eventData)
     {
+        if (onSubmitCallBack != null)
+            onSubmitCallBack();
+
         if (onSubmit != null)
         {
             data = new UGUIData(gameObject, eventData, parameter);
@@ -252,6 +316,9 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
 
     void IUpdateSelectedHandler.OnUpdateSelected(BaseEventData eventData)
     {
+        if (onUpdateSelectedCallBack != null)
+            onUpdateSelectedCallBack();
+
         if (onUpdateSelected != null)
         {
             data = new UGUIData(gameObject, eventData, parameter);
@@ -267,6 +334,81 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
     public void onPointerDownFuc(EventCallBack callBack)
     {
         if (callBack != null) this.onPointerDownCallBack += callBack;
+    }
+
+    public void onPointerUpFuc(EventCallBack callBack)
+    {
+        if (callBack != null) this.onPointerUpCallBack += callBack;
+    }
+
+    public void onPointerEnterFuc(EventCallBack callBack)
+    {
+        if (callBack != null) this.onPointerEnterCallBack += callBack;
+    }
+
+    public void onPointerExitFuc(EventCallBack callBack)
+    {
+        if (callBack != null) this.onPointerExitCallBack += callBack;
+    }
+
+    public void onSelectFuc(EventCallBack callBack)
+    {
+        if (callBack != null) this.onSelectCallBack += callBack;
+    }
+
+    public void onBeginDragFuc(EventCallBack callBack)
+    {
+        if (callBack != null) this.onBeginDragCallBack += callBack;
+    }
+
+    public void onCancelFuc(EventCallBack callBack)
+    {
+        if (callBack != null) this.onCancelCallBack += callBack;
+    }
+
+    public void onDeselectFuc(EventCallBack callBack)
+    {
+        if (callBack != null) this.onDeselectCallBack += callBack;
+    }
+
+    public void onDragFuc(EventCallBack callBack)
+    {
+        if (callBack != null) this.onDragCallBack += callBack;
+    }
+
+    public void onDropFuc(EventCallBack callBack)
+    {
+        if (callBack != null) this.onDropCallBack += callBack;
+    }
+
+    public void onEndDragFuc(EventCallBack callBack)
+    {
+        if (callBack != null) this.onEndDragCallBack += callBack;
+    }
+
+    public void onInitializePotentialDragFuc(EventCallBack callBack)
+    {
+        if (callBack != null) this.onInitializePotentialDragCallBack += callBack;
+    }
+
+    public void onMoveFuc(EventCallBack callBack)
+    {
+        if (callBack != null) this.onMoveCallBack += callBack;
+    }
+
+    public void onScrollFuc(EventCallBack callBack)
+    {
+        if (callBack != null) this.onScrollCallBack += callBack;
+    }
+
+    public void onSubmitFuc(EventCallBack callBack)
+    {
+        if (callBack != null) this.onSubmitCallBack += callBack;
+    }
+
+    public void onUpdateSelectedFuc(EventCallBack callBack)
+    {
+        if (callBack != null) this.onUpdateSelectedCallBack += callBack;
     }
 
     #endregion
@@ -383,18 +525,6 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
     public void awake(UnityEventListener.EventCallBack CallBack)
     {
         if (CallBack != null) this.awakeCallBack += CallBack;
-
-        //if (CallBack != null) this.awakeCallBack += delegate() 
-        //{
-        //    try
-        //    {
-        //        CallBack();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.LogError(ex);
-        //    }
-        //};
     }
 
     public void onApplicationPause(UnityEventListener.EventCallBack CallBack)
