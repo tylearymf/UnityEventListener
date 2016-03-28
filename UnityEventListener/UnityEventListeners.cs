@@ -1,5 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerEnterHandler,
     IPointerExitHandler, IPointerUpHandler, ISelectHandler, IDragHandler, IDropHandler, IBeginDragHandler,
@@ -52,7 +55,7 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
     public event VoidDelegate onPointerLeftDoubleClick;
 
     public delegate void EventCallBack();
-    public delegate void EventsCallBack(int count);
+    public delegate void EventsCallBack(ref int count);
     event EventCallBack awakeCallBack;
     event EventCallBack onApplicationPauseCallBack;
     event EventCallBack onApplicationFocusCallBack;
@@ -99,6 +102,13 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
     }
 
     #endregion
+
+    public UnityEventListener OnValueChange<T>(UnityAction<bool> callBack) where T : Toggle
+    {
+       Toggle t = gameObject.GetComponent(typeof(T)) as T;
+        t.onValueChanged.AddListener(callBack);
+        return this;
+    }
 
     #region UGUIEventListener
 
@@ -496,7 +506,7 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
     void OnMouseDown()
     {
         count++;
-        if (onMouseDownCallBack != null) onMouseDownCallBack(count);
+        if (onMouseDownCallBack != null) onMouseDownCallBack(ref count);
     }
 
     void OnMouseEnter()
