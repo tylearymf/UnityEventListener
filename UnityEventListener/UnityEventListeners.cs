@@ -326,89 +326,106 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
         }
     }
 
-    public void onPointerClickFuc(EventCallBack callBack)
+    public UnityEventListener onPointerClickFuc(EventCallBack callBack)
     {
         if (callBack != null) this.onPointerClickCallBack += callBack;
+        return this;
     }
 
-    public void onPointerDownFuc(EventCallBack callBack)
+    public UnityEventListener onPointerDownFuc(EventCallBack callBack)
     {
         if (callBack != null) this.onPointerDownCallBack += callBack;
+        return this;
     }
 
-    public void onPointerUpFuc(EventCallBack callBack)
+    public UnityEventListener onPointerUpFuc(EventCallBack callBack)
     {
         if (callBack != null) this.onPointerUpCallBack += callBack;
+        return this;
     }
 
-    public void onPointerEnterFuc(EventCallBack callBack)
+    public UnityEventListener onPointerEnterFuc(EventCallBack callBack)
     {
         if (callBack != null) this.onPointerEnterCallBack += callBack;
+        return this;
     }
 
-    public void onPointerExitFuc(EventCallBack callBack)
+    public UnityEventListener onPointerExitFuc(EventCallBack callBack)
     {
         if (callBack != null) this.onPointerExitCallBack += callBack;
+        return this;
     }
 
-    public void onSelectFuc(EventCallBack callBack)
+    public UnityEventListener onSelectFuc(EventCallBack callBack)
     {
         if (callBack != null) this.onSelectCallBack += callBack;
+        return this;
     }
 
-    public void onBeginDragFuc(EventCallBack callBack)
+    public UnityEventListener onBeginDragFuc(EventCallBack callBack)
     {
         if (callBack != null) this.onBeginDragCallBack += callBack;
+        return this;
     }
 
-    public void onCancelFuc(EventCallBack callBack)
+    public UnityEventListener onCancelFuc(EventCallBack callBack)
     {
         if (callBack != null) this.onCancelCallBack += callBack;
+        return this;
     }
 
-    public void onDeselectFuc(EventCallBack callBack)
+    public UnityEventListener onDeselectFuc(EventCallBack callBack)
     {
         if (callBack != null) this.onDeselectCallBack += callBack;
+        return this;
     }
 
-    public void onDragFuc(EventCallBack callBack)
+    public UnityEventListener onDragFuc(EventCallBack callBack)
     {
         if (callBack != null) this.onDragCallBack += callBack;
+        return this;
     }
 
-    public void onDropFuc(EventCallBack callBack)
+    public UnityEventListener onDropFuc(EventCallBack callBack)
     {
         if (callBack != null) this.onDropCallBack += callBack;
+        return this;
     }
 
-    public void onEndDragFuc(EventCallBack callBack)
+    public UnityEventListener onEndDragFuc(EventCallBack callBack)
     {
         if (callBack != null) this.onEndDragCallBack += callBack;
+        return this;
     }
 
-    public void onInitializePotentialDragFuc(EventCallBack callBack)
+    public UnityEventListener onInitializePotentialDragFuc(EventCallBack callBack)
     {
         if (callBack != null) this.onInitializePotentialDragCallBack += callBack;
+        return this;
     }
 
-    public void onMoveFuc(EventCallBack callBack)
+    public UnityEventListener onMoveFuc(EventCallBack callBack)
     {
         if (callBack != null) this.onMoveCallBack += callBack;
+        return this;
     }
 
-    public void onScrollFuc(EventCallBack callBack)
+    public UnityEventListener onScrollFuc(EventCallBack callBack)
     {
         if (callBack != null) this.onScrollCallBack += callBack;
+        return this;
     }
 
-    public void onSubmitFuc(EventCallBack callBack)
+    public UnityEventListener onSubmitFuc(EventCallBack callBack)
     {
         if (callBack != null) this.onSubmitCallBack += callBack;
+        return this;
     }
 
-    public void onUpdateSelectedFuc(EventCallBack callBack)
+    public UnityEventListener onUpdateSelectedFuc(EventCallBack callBack)
     {
         if (callBack != null) this.onUpdateSelectedCallBack += callBack;
+        return this;
     }
 
     #endregion
@@ -522,109 +539,130 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
         if (startCallBack != null) startCallBack();
     }
 
-    public void awake(UnityEventListener.EventCallBack CallBack)
+    public UnityEventListener awake(EventCallBack CallBack)
     {
         if (CallBack != null) this.awakeCallBack += CallBack;
+        return this;
     }
 
-    public void onApplicationPause(UnityEventListener.EventCallBack CallBack)
+    public UnityEventListener onApplicationPause(EventCallBack CallBack)
     {
         if (CallBack != null) this.onApplicationPauseCallBack += CallBack;
+        return this;
     }
 
-    public void onApplicationFocus(UnityEventListener.EventCallBack CallBack)
+    public UnityEventListener onApplicationFocus(EventCallBack CallBack)
     {
         if (CallBack != null) this.onApplicationFocusCallBack += CallBack;
+        return this;
     }
 
-    public void onApplicationQuit(UnityEventListener.EventCallBack CallBack)
+    public UnityEventListener onApplicationQuit(EventCallBack CallBack)
     {
         if (CallBack != null) this.onApplicationQuitCallBack += CallBack;
+        return this;
     }
 
-    public void onBecameVisible(UnityEventListener.EventCallBack CallBack)
+    public UnityEventListener onBecameVisible(EventCallBack CallBack)
     {
         if (CallBack != null) this.onBecameVisibleCallBack += CallBack;
+        return this;
     }
 
-    public void onBecameInVisible(UnityEventListener.EventCallBack CallBack)
+    public UnityEventListener onBecameInVisible(EventCallBack CallBack)
     {
         if (CallBack != null) this.onBecameInVisibleCallBack += CallBack;
+        return this;
     }
 
-    public void onCollisionEnter(UnityEventListener.EventCallBack CallBack)
+    public UnityEventListener onCollisionEnter(EventCallBack CallBack)
     {
         if (CallBack != null) this.onCollisionEnterCallBack += CallBack;
+        return this;
     }
 
-    public void onCollisionExit(UnityEventListener.EventCallBack CallBack)
+    public UnityEventListener onCollisionExit(EventCallBack CallBack)
     {
         if (CallBack != null) this.onCollisionExitCallBack += CallBack;
+        return this;
     }
 
-    public void onCollisionStay(UnityEventListener.EventCallBack CallBack)
+    public UnityEventListener onCollisionStay(EventCallBack CallBack)
     {
         if (CallBack != null) this.onCollisionStayCallBack += CallBack;
+        return this;
     }
 
-    public void onDestroy(UnityEventListener.EventCallBack CallBack)
+    public UnityEventListener onDestroy(EventCallBack CallBack)
     {
         if (CallBack != null) this.onDestroyCallBack += CallBack;
+        return this;
     }
 
-    public void onDisable(UnityEventListener.EventCallBack CallBack)
+    public UnityEventListener onDisable(EventCallBack CallBack)
     {
         if (CallBack != null) this.onDisableCallBack += CallBack;
+        return this;
     }
 
-    public void onEnable(UnityEventListener.EventCallBack CallBack)
+    public UnityEventListener onEnable(EventCallBack CallBack)
     {
         if (CallBack != null) this.onEnableCallBack += CallBack;
+        return this;
     }
 
-    public void onMouseDown(UnityEventListener.EventsCallBack CallBack)
+    public UnityEventListener onMouseDown(EventsCallBack CallBack)
     {
         if (CallBack != null) this.onMouseDownCallBack += CallBack;
+        return this;
     }
 
-    public void onMouseEnter(UnityEventListener.EventCallBack CallBack)
+    public UnityEventListener onMouseEnter(EventCallBack CallBack)
     {
         if (CallBack != null) this.onMouseEnterCallBack += CallBack;
+        return this;
     }
 
-    public void onMouseExit(UnityEventListener.EventCallBack CallBack)
+    public UnityEventListener onMouseExit(EventCallBack CallBack)
     {
         if (CallBack != null) this.onMouseExitCallBack += CallBack;
+        return this;
     }
 
-    public void onMouseOver(UnityEventListener.EventCallBack CallBack)
+    public UnityEventListener onMouseOver(EventCallBack CallBack)
     {
         if (CallBack != null) this.onMouseOverCallBack += CallBack;
+        return this;
     }
 
-    public void onMouseUp(UnityEventListener.EventCallBack CallBack)
+    public UnityEventListener onMouseUp(EventCallBack CallBack)
     {
         if (CallBack != null) this.onMouseUpCallBack += CallBack;
+        return this;
     }
 
-    public void onTriggerEnter(UnityEventListener.EventCallBack CallBack)
+    public UnityEventListener onTriggerEnter(EventCallBack CallBack)
     {
         if (CallBack != null) this.onTriggerEnterCallBack += CallBack;
+        return this;
     }
 
-    public void onTriggerExit(UnityEventListener.EventCallBack CallBack)
+    public UnityEventListener onTriggerExit(EventCallBack CallBack)
     {
         if (CallBack != null) this.onTriggerExitCallBack += CallBack;
+        return this;
     }
 
-    public void onTriggerStay(UnityEventListener.EventCallBack CallBack)
+    public UnityEventListener onTriggerStay(EventCallBack CallBack)
     {
         if (CallBack != null) this.onTriggerStayCallBack += CallBack;
+        return this;
     }
 
-    public void start(UnityEventListener.EventCallBack CallBack)
+    public UnityEventListener start(EventCallBack CallBack)
     {
         if (CallBack != null) this.startCallBack += CallBack;
+        return this;
     }
 
     #endregion
