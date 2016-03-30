@@ -103,10 +103,45 @@ public class UnityEventListener : MonoBehaviour, IPointerClickHandler, IPointerD
 
     #endregion
 
-    public UnityEventListener OnValueChange<T>(UnityAction<bool> callBack) where T : Toggle 
+    public UnityEventListener OnToggleValueChange<T>(UnityAction<bool> callBack) where T : Toggle 
     {
-       Toggle t = gameObject.GetComponent(typeof(T)) as T;
-        t.onValueChanged.AddListener(callBack);
+       (gameObject.GetComponent(typeof(T)) as T).onValueChanged.AddListener(callBack);
+        return this;
+    }
+
+    public UnityEventListener OnButtonClick<T>(UnityAction callBack) where T : Button
+    {
+        (gameObject.GetComponent(typeof(T)) as T).onClick.AddListener(callBack);
+        return this;
+    }
+
+    public UnityEventListener OnSliderValueChange<T>(UnityAction<float> callBack) where T : Slider
+    {
+        (gameObject.GetComponent(typeof(T)) as T).onValueChanged.AddListener(callBack);
+        return this;
+    }
+
+    public UnityEventListener OnScrollbarValueChange<T>(UnityAction<float> callBack) where T : Scrollbar
+    {
+        (gameObject.GetComponent(typeof(T)) as T).onValueChanged.AddListener(callBack);
+        return this;
+    }
+
+    public UnityEventListener OnInputFieldValueChange<T>(UnityAction<string> callBack) where T : InputField
+    {
+        (gameObject.GetComponent(typeof(T)) as T).onValueChange.AddListener(callBack);
+        return this;
+    }
+
+    public UnityEventListener OnInputFieldEndEdit<T>(UnityAction<string> callBack) where T : InputField
+    {
+        (gameObject.GetComponent(typeof(T)) as T).onEndEdit.AddListener(callBack);
+        return this;
+    }
+
+    public UnityEventListener OnScrollRectValueChanged<T>(UnityAction<Vector2> callBack) where T : ScrollRect
+    {
+        (gameObject.GetComponent(typeof(T)) as T).onValueChanged.AddListener(callBack);
         return this;
     }
 
